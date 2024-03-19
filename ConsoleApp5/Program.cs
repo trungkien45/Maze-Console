@@ -20,24 +20,23 @@ namespace ConsoleApp5
         public void Display(int x, int y)
         {
             // Set vị trí cho phần trên của ô
-            Console.SetCursorPosition(x * 3, y * 3);
+            Console.SetCursorPosition(x * 6, y * 3);
             
-            Console.Write("█");
-            Console.Write(Walls[0] ? "█" : " ");
-            Console.Write("█");
+            Console.Write("██");
+            Console.Write(Walls[0] ? "██" : "  ");
+            Console.Write("██");
 
             // Set vị trí cho phần giữa của ô
-            Console.SetCursorPosition(x * 3, y * 3 + 1);
-            Console.Write(Walls[3] ? "█" : " ");
-            Console.Write(" ");
-            Console.Write(Walls[1] ? "█" : " ");
+            Console.SetCursorPosition(x * 6, y * 3 + 1);
+            Console.Write(Walls[3] ? "██" : "  ");
+            Console.Write("  ");
+            Console.Write(Walls[1] ? "██" : "  ");
 
             // Set vị trí cho phần dưới của ô
-            Console.SetCursorPosition(x * 3, y * 3 + 2);
-            Console.Write("█");
-            Console.Write(Walls[2
-                ] ? "█" : " ");
-            Console.Write("█");
+            Console.SetCursorPosition(x * 6, y * 3 + 2);
+            Console.Write("██");
+            Console.Write(Walls[2] ? "██" : "  ");
+            Console.Write("██");
 
         }
     }
@@ -154,10 +153,12 @@ namespace ConsoleApp5
     {
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Red;
             while (true)
             {
                 Console.Clear();
-                Maze maze = new Maze(8, 8);
+                Maze maze = new Maze(18, 18);
                 maze.Generate();
                 maze.Display();
                 Console.ReadKey();
