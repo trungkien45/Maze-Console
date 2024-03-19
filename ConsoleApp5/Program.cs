@@ -17,35 +17,28 @@ namespace ConsoleApp5
             Visited = false;
             Walls = new bool[] { true, true, true, true }; // Top, Right, Bottom, Left
         }
-        // Phương thức Display được cải tiến để hiển thị mỗi ô trên ba dòng
-        public void DisplayTop()
+        public void Display(int x, int y)
         {
+            // Set vị trí cho phần trên của ô
+            Console.SetCursorPosition(x * 3, y * 3);
+            
             Console.Write("█");
-            Thread.Sleep(100);
             Console.Write(Walls[0] ? "█" : " ");
-            Thread.Sleep(100);
             Console.Write("█");
-            Thread.Sleep(100);
-        }
 
-        public void DisplayMiddle()
-        {
+            // Set vị trí cho phần giữa của ô
+            Console.SetCursorPosition(x * 3, y * 3 + 1);
             Console.Write(Walls[3] ? "█" : " ");
-            Thread.Sleep(100);
             Console.Write(" ");
-            Thread.Sleep(100);
             Console.Write(Walls[1] ? "█" : " ");
-            Thread.Sleep(100);
-        }
 
-        public void DisplayBottom()
-        {
+            // Set vị trí cho phần dưới của ô
+            Console.SetCursorPosition(x * 3, y * 3 + 2);
             Console.Write("█");
-            Thread.Sleep(100);
-            Console.Write(Walls[2] ? "█" : " ");
-            Thread.Sleep(100);
+            Console.Write(Walls[2
+                ] ? "█" : " ");
             Console.Write("█");
-            Thread.Sleep(100);
+
         }
     }
 
@@ -146,28 +139,14 @@ namespace ConsoleApp5
 
         public void Display()
         {
+
+            Console.Clear();
             for (int y = 0; y < height; y++)
             {
-                // Hiển thị phần trên của mỗi ô
                 for (int x = 0; x < width; x++)
                 {
-                    grid[x + y * width].DisplayTop();
+                    grid[x + y * width].Display(x, y);
                 }
-                Console.WriteLine();
-
-                // Hiển thị phần giữa của mỗi ô
-                for (int x = 0; x < width; x++)
-                {
-                    grid[x + y * width].DisplayMiddle();
-                }
-                Console.WriteLine();
-
-                // Hiển thị phần dưới của mỗi ô
-                for (int x = 0; x < width; x++)
-                {
-                    grid[x + y * width].DisplayBottom();
-                }
-                Console.WriteLine();
             }
         }
     }
@@ -175,9 +154,14 @@ namespace ConsoleApp5
     {
         static void Main(string[] args)
         {
-            Maze maze = new Maze(8, 8);
-            maze.Generate();
-            maze.Display();
+            while (true)
+            {
+                Console.Clear();
+                Maze maze = new Maze(8, 8);
+                maze.Generate();
+                maze.Display();
+                Console.ReadKey();
+            }
         }
     }
 }
